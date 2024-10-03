@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,7 +16,7 @@ public class playercontroller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        charge = duration;
     }
 
     // Update is called once per frame
@@ -27,18 +28,25 @@ public class playercontroller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && charge <= duration * 50)
         {
-            Debug.Log("Timestop");
-            StartCoroutine(Timestop());
+            //fixed update is 50 every second so if i add +1 to a counter for every iteration in the frame then divide it by 50 that should make a second conversion
+ 
+                timestopactivated = true;
+                charge += 1;
+                Debug.Log(charge/50);
+        }
+        else
+        {
+            timestopactivated = false;
+            //everyframe your not holding space regen starts to climb
+            charge--;
+            if (charge < 0)
+            {
+                charge = 0;
+            }
         }
 
-    }
 
-    IEnumerator Timestop()
-    {
-        timestopactivated = true;
-        yield return new WaitForSeconds(duration);
-        timestopactivated = false;
     }
 }

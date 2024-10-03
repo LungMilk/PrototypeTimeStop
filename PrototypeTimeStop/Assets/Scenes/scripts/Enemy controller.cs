@@ -31,7 +31,6 @@ public class Enemycontroller : MonoBehaviour
             if (transform.position.x <= 0)
             {
                 direction = Vector3.right;
-                Debug.Log(direction);
             }
             transform.position += direction * Time.deltaTime;
         }
