@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class playercontroller : MonoBehaviour
 {
+    public TextMeshProUGUI durationnumber;
     public Rigidbody2D rb;
 
     float x;
@@ -28,6 +31,8 @@ public class playercontroller : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //and it can still recharge little values and be activated at such time.
+        //programming load is too much and i think thats the issue that slows the processing down.
         if (Input.GetKey(KeyCode.Space) && charge <= duration * 50)
         {
             //fixed update is 50 every second so if i add +1 to a counter for every iteration in the frame then divide it by 50 that should make a second conversion
@@ -46,7 +51,7 @@ public class playercontroller : MonoBehaviour
                 charge = 0;
             }
         }
-
-
+        //
+        durationnumber.text = Convert.ToInt64(5 - charge / 50) + "s";
     }
 }
