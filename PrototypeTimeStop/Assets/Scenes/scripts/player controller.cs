@@ -52,6 +52,6 @@ public class playercontroller : MonoBehaviour
             }
         }
         //
-        durationnumber.text = Convert.ToInt64(5 - charge / 50) + "s";
+        durationnumber.text = Convert.ToInt64(duration - charge / 50)  + "s";
     }
 }
