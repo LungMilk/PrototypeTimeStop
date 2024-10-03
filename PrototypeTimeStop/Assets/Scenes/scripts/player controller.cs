@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class playercontroller : MonoBehaviour
 {
     public Rigidbody2D rb;
 
     float x;
-    bool timestopactivated = false;
+    public bool timestopactivated = false;
+
+    public float duration =5;
+    float charge;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +30,15 @@ public class playercontroller : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             Debug.Log("Timestop");
-            timestopactivated = true;
+            StartCoroutine(Timestop());
         }
 
+    }
+
+    IEnumerator Timestop()
+    {
+        timestopactivated = true;
+        yield return new WaitForSeconds(duration);
+        timestopactivated = false;
     }
 }

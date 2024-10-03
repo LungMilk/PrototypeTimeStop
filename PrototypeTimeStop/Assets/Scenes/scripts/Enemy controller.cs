@@ -10,7 +10,7 @@ public class Enemycontroller : MonoBehaviour
     public Rigidbody2D Enemyrb;
     Vector3 direction;
 
-    bool active = true;
+    public bool abletomove = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class Enemycontroller : MonoBehaviour
 
     private void Update()
     {
-        if (active)
+        if (abletomove)
         {
             //still works with gravity and rb
             // i want it to function with partolling between 2 points but
@@ -35,12 +35,7 @@ public class Enemycontroller : MonoBehaviour
             }
             transform.position += direction * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.Space))
-        {
-            //works but boring
-            active = false;
-
-        }
+    
     }
 
 }
